@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  Input,
+} from '@angular/core';
 import { Media } from '../../../common/models/media';
 
 @Component({
@@ -25,6 +30,11 @@ import { Media } from '../../../common/models/media';
         place-items: center;
         outline: 0.25rem solid #fff;
         background-color: #000;
+      }
+
+      :host.video {
+        grid-column: 2 / -2;
+        height: 500px;
       }
 
       img,
@@ -76,4 +86,8 @@ export class GalleryMediaComponent {
   }
 
   isVideo = false;
+
+  @HostBinding('class.video') get videoClass() {
+    return this.isVideo;
+  }
 }
